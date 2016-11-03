@@ -1,2 +1,3 @@
 # docker-ansible
-Dockerized Ansible
+
+Dockerized version of Ansible.
