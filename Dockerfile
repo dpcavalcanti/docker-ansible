@@ -13,7 +13,7 @@ RUN echo "===> Adding Python..."  && \
     pip install ansible                && \
     \
     \
-    echo "===> Installing handy tools (not absolutely required)..."  && \
+    echo "===> Installing handy tools..."  && \
     apk --update --no-cache add sshpass openssh-client rsync  && \
     \
     \
@@ -22,16 +22,12 @@ RUN echo "===> Adding Python..."  && \
     rm -rf /var/cache/apk/*               && \
     \
     \
-    echo "===> Creating playbook directory" && \
+    echo "===> Creating ansible's directories" && \
     mkdir -p /root/playbooks && \
-    \
-    \
-    echo "===> Adding hosts for convenience..."  && \
-    mkdir -p /etc/ansible                        && \
-    echo 'localhost' > /etc/ansible/hosts
+    mkdir -p /etc/ansible
 
 #Volumes
-VOLUME ["/etc/ansible", "/root/.ssh"]
+VOLUME ["/etc/ansible", "/root/playbooks", "/root/.ssh"]
 
 #Default Command
 CMD ["ansible-playbook", "--version"]
